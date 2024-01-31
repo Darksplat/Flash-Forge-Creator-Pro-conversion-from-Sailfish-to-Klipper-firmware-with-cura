@@ -85,8 +85,14 @@ Compiled, flashed and sliced by Windows 10 and MacOS 13 (Ventura)
    - Locate the "8U2 ICSP" and "1280 ICSP" 6-pin header connectors.
 
    **ICSP Connectors:**
-   - Connect the USBasp cable to "8U2 ICSP," ensuring correct positioning.
-   ![ICSP Connectors](link_to_image)
+   
+![ICSP Connectors](https://github.com/Darksplat/Flash-Forge-Creator-Pro-conversion-from-Sailfish-to-Klipper-firmware-with-cura/blob/main/ICSP%20Images/ffcp_motherboard_icsp.jpg)
+
+  - Connect the USBasp cable at "8U2 ICSP" cheking the correct position. The picture below shows the reference pin.
+
+![ICSP Connectors](https://github.com/Darksplat/Flash-Forge-Creator-Pro-conversion-from-Sailfish-to-Klipper-firmware-with-cura/blob/main/ICSP%20Images/ubsasp_icsp_position1.jpg)
+
+![ICSP Connectors](https://github.com/Darksplat/Flash-Forge-Creator-Pro-conversion-from-Sailfish-to-Klipper-firmware-with-cura/blob/main/ICSP%20Images/ubsasp_icsp_position2.jpg)
 
    - Ensure the board is powered by USBasp or the power cable.
    - Open the command terminal and navigate to the AVRDUDE directory.
