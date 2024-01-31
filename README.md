@@ -95,6 +95,8 @@ Certainly! I'll integrate the provided commands into the existing procedure:
    - Copy the .hex files to your AVRDUDE folder:
      - Bootloader/8U2_firmware/Makerbot-usbserial.hex
      - Bootloader/MightyBoardFirmware-2560-bootloader/stk500boot_v2_mega2560.hex
+    
+MACOS
 
 2. **Load 8U2 with Bootloader and Set Lock Bits (using USBasp on macOS):**
    ```bash
@@ -128,8 +130,10 @@ Certainly! I'll integrate the provided commands into the existing procedure:
    avrdude -v -C avrdude.conf -p m2560 -c avrisp -P /dev/ttyACM0 -b 19200 -U flash:w:stk500boot_v2_mega2560.hex:i -U lock:w:0x0f:m
    ```
    - Replace `/dev/ttyACM0` with the appropriate port for your Arduino.
+  
+WINDOWS
 
-### Flash ATmega2560 (Main Microcontroller) Bootloader (Continued for Windows)
+### Flash ATmega2560 (Main Microcontroller) Bootloader (For Windows)
 
 9. **Load ATMEGA2560 with Bootloader and Set Lock Bits (using USBasp on Windows):**
    ```bash
@@ -139,9 +143,7 @@ Certainly! I'll integrate the provided commands into the existing procedure:
 10. **Using Arduino UNO/Mega as ISP Programmer (on Windows):**
    - Follow the [Arduino ISP guide](https://docs.arduino.cc/built-in-examples/arduino-isp/ArduinoISP/) to set up your Arduino UNO or Mega as an ISP programmer.
 
-11. **Load 8U2 with Bootloader and Set Lock Bits (using Arduino UN
-
-O/Mega on Windows):**
+11. **Load 8U2 with Bootloader and Set Lock Bits (using Arduino UNO/Mega on Windows):**
    ```bash
    avrdude -v -C avrdude.conf -p m8u2 -c avrisp -P COMX -b 19200 -U flash:w:Makerbot-usbserial.hex:i -U lfuse:w:0xFF:m -U hfuse:w:0xD9:m -U efuse:w:0xF4:m -U lock:w:0x0F:m
    ```
