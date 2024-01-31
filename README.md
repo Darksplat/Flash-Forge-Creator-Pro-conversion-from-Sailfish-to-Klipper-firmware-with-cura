@@ -48,10 +48,10 @@ Compiled, flashed and sliced by Windows 10 and MacOS 13 (Ventura)
 
 2. **Computer Setup:**
    - Install a text editor (e.g., Notepad++) for editing configuration files.
-   - Download and install the necessary drivers for your 3D printer.
-   - Download and install the necessary drivers for your USBasp
-   - Download and install the latest Arduino IDE
-   - Download and install AVRDUDE
+   - Download and install the necessary drivers for your 3D printer (https://www.flashforge.com/download-center/63)
+   - Download and install the necessary drivers for your USBasp (https://zadig.akeo.ie)
+   - Download and install the latest Arduino IDE (https://www.arduino.cc/en/software)
+   - Download and install AVRDUDE (https://github.com/avrdudes/avrdude)
    - Download and install a ftp transfer program like Cyberduck(MacOS or Filezilla(Windows)
    - Download and install putty(win) or use your built in terminal program
 
@@ -183,7 +183,119 @@ The new firmware ignores virtual DTR line changes. It pulls the RESET line down 
 57600 is the baud rate we use for firmware updates. The RESET line is set high for all other baud rates. Normal communication with the bot uses 115200 baud.
 
 
+Klipper installation
 
+
+Certainly! Below is the modified text with added headings for each section:
+
+## Klipper Installation
+
+### Obtain a Klipper Configuration File
+
+Most Klipper settings are determined by a "printer configuration file" stored on the Raspberry Pi. Follow these steps:
+
+1. Look in the Klipper config directory for a file starting with a "printer-" prefix corresponding to the target printer.
+2. If unavailable, search the printer manufacturer's website for an appropriate Klipper configuration file.
+3. If none found, but the printer control board type is known, look for a config file starting with a "generic-" prefix.
+4. Create a new custom printer configuration file if needed, using an appropriate example config file as a starting point.
+
+### Prepping an OS Image
+
+1. Install OctoPi on the Raspberry Pi computer, using OctoPi v0.17.0 or later.
+2. Verify OctoPrint web server functionality.
+3. SSH into the target machine and run the following commands:
+
+    ```bash
+    git clone https://github.com/Klipper3d/klipper
+    ./klipper/scripts/install-octopi.sh
+    ```
+
+   This downloads Klipper, installs dependencies, sets up Klipper to run at startup, and starts the Klipper host software.
+
+### Building and Flashing the Micro-Controller
+
+1. Compile the micro-controller code:
+
+    ```bash
+    cd ~/klipper/
+    make menuconfig
+    ```
+
+   Configure settings as per comments in the printer configuration file. Press "Q" to exit and then "Y" to save. Run:
+
+    ```bash
+    make
+    ```
+
+2. Determine the serial port connected to the micro-controller:
+
+    ```bash
+    ls /dev/serial/by-id/*
+    ```
+
+   Note the unique serial port name for flashing.
+
+   This is my unique code but it should look like this
+   'usb-MakerBot_Industries_The_Replicator_85633323630351B050C0-if00'
+
+4. Flash the micro-controller using avrdude:
+
+    ```bash
+    sudo service klipper stop
+    avrdude -c stk500v2 -p m2560 -P /dev/serial/by-id/usb-MakerBot_Industries_The_Replicator_85633323630351B050C0-if00 -b 57600 -D -U out/klipper.elf.hex
+    sudo service klipper start
+    ```
+
+   Update `/dev/serial/by-id/usb-MakerBot_Industries_The_Replicator_85633323630351B050C0-if00` with the actual unique serial port name.
+
+This code uses `avrdude` to flash the micro-controller. Make sure to replace the placeholder with the actual serial port name obtained in step 2. After flashing, restart Klipper to apply the changes.
+
+
+
+
+### Configuring OctoPrint to Use Klipper
+
+1. Configure OctoPrint:
+
+    - Navigate to the Settings tab > Serial Connection.
+    - Add `/tmp/printer` to "Additional serial ports" and save.
+    - Change "Serial Port" setting to `/tmp/printer` and save.
+    - In the Behavior sub-tab, select "Cancel any ongoing prints but stay connected to the printer" and save.
+
+2. Connect OctoPrint to Klipper:
+
+   - In the Connection section, set "Serial Port" to `/tmp/printer` and click "Connect."
+
+3. In the Terminal tab, type "status" to verify communication between OctoPrint and Klipper.
+
+### Configuring Klipper
+
+1. Copy the printer configuration file to the Raspberry Pi:
+
+   - Use a desktop editor supporting "scp" or "sftp" protocols or copy directly via ssh.
+   - Save the file as `printer.cfg` in the home directory of the pi user (`/home/pi/printer.cfg`).
+
+2. Update the configuration file with the unique micro-controller name:
+
+    ```bash
+    ls /dev/serial/by-id/*
+    ```
+
+   Note the updated unique serial port name.
+
+3. Update the config file:
+
+    ```bash
+    nano ~/printer.cfg
+    ```
+
+   Update the [mcu] section to use the new serial port name.
+
+4. Restart OctoPrint and check the terminal for any configuration errors.
+
+5. Once Klipper reports the printer is ready, proceed to the config check document for basic checks on the config file definitions.
+
+Refer to the main documentation for additional information: [Klipper Installation Guide](https://www.klipper3d.org/Installation.html).
 
 
 
