@@ -85,8 +85,6 @@ Compiled, flashed and sliced by Windows 10 and MacOS 13 (Ventura)
    - Connect the USBasp cable to "8U2 ICSP," ensuring correct positioning.
    ![ICSP Connectors](link_to_image)
 
-
-
    - Ensure the board is powered by USBasp or the power cable.
    - Open the command terminal and navigate to the AVRDUDE directory.
 
