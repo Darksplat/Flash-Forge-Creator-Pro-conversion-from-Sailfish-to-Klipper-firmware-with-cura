@@ -43,14 +43,16 @@ Compiled, flashed and sliced by Windows 10 and MacOS 13 (Ventura)
        Contains the firmware that acts like a USB to UART bridge and also performs the update of Sailfish firmware similarly to an ordinary Arduino.
      - **Atmega2560 Folder:**
        Contains the image of the main Sailfish firmware.
+     - **Arduino-ISP-Mod-UNO-4-Wifi Folder:**
+       Containes the Arduino-ISP-Mod-UNO-4-Wifi sketch if using the UNO/Mega as an ISP
 
 2. **Computer Setup:**
    - Install a text editor (e.g., Notepad++) for editing configuration files.
    - Download and install the necessary drivers for your 3D printer.
    - Download and install the necessary drivers for your USBasp
    - Download and install the latest Arduino IDE
-   - Download and install AVRDUDESS
-   - Download and install a ftp transfer program like Cyberduck(MacOS0 or Filezilla(Windows)
+   - Download and install AVRDUDE
+   - Download and install a ftp transfer program like Cyberduck(MacOS or Filezilla(Windows)
    - Download and install putty(win) or use your built in terminal program
 
 3. **Klipper Firmware Files:**
@@ -69,11 +71,6 @@ Compiled, flashed and sliced by Windows 10 and MacOS 13 (Ventura)
    - **Arduino UNO or Mega:** If available, and you dont have a USBasp follow [this guide](https://docs.arduino.cc/built-in-examples/arduino-isp/ArduinoISP/) for ISP Programming an Arduino UNO. Use the sketch Arduino_ISP_Mod_UNO_4_Wifi.
    - **Set of Hex/Allen Keys:** Required to access the main board.
    - **Dupont Wires:** Have some on hand in case the cable from your USBasp/UNO/Mega is not long enough.
-  
-
-Certainly! I'll integrate the code for using an Arduino UNO or Mega as the ISP programmer into the existing procedure:
-
-Certainly! I'll integrate the provided commands into the existing procedure:
 
 ## Procedure
 
@@ -88,6 +85,8 @@ Certainly! I'll integrate the provided commands into the existing procedure:
    - Connect the USBasp cable to "8U2 ICSP," ensuring correct positioning.
    ![ICSP Connectors](link_to_image)
 
+
+
    - Ensure the board is powered by USBasp or the power cable.
    - Open the command terminal and navigate to the AVRDUDE directory.
 
@@ -98,11 +97,14 @@ Certainly! I'll integrate the provided commands into the existing procedure:
    - Copy the .hex files to your AVRDUDE folder:
      - Bootloader/8U2_firmware/Makerbot-usbserial.hex
      - Bootloader/MightyBoardFirmware-2560-bootloader/stk500boot_v2_mega2560.hex
-     - Open Terminal and type 'cd' followed by a space then drag and drop the folder where avrdude and the hex files are (ie Downloads) in finder and press enter
-    
+         
 MACOS
 
-2. **Load 8U2 with Bootloader and Set Lock Bits (using USBasp on macOS):**
+- Open Terminal and type 'cd' followed by a space then drag and drop the folder where avrdude and the hex files are (ie Downloads) in finder and press enter
+
+**Using the USBasp as a Programmer:**
+
+2. **Load 8U2 with Bootloader and Set Lock Bits:**
    ```bash
    avrdude -v -C avrdude.conf -p m8u2 -P usb -c usbasp -U flash:w:Makerbot-usbserial.hex:i -U lfuse:w:0xFF:m -U hfuse:w:0xD9:m -U efuse:w:0xF4:m -U lock:w:0x0F:m
    ```
@@ -111,14 +113,14 @@ MACOS
 3. **Switch to "1280 ICSP":**
    - Take the USBasp cable off and connect it to "1280 ICSP" (attention with the cable position).
 
-4. **Load ATMEGA2560 with Bootloader and Set Lock Bits (using USBasp on macOS):**
+4. **Load ATMEGA2560 with Bootloader and Set Lock Bits:**
    ```bash
    avrdude -v -C avrdude.conf -p m2560 -c usbasp -P usb -U lock:w:0x3F:m -U efuse:w:0xFD:m -U hfuse:w:0xD8:m -U lfuse:w:0xFF:m -e
    avrdude -v -C avrdude.conf -p m2560 -P usb -c usbasp -U flash:w:stk500boot_v2_mega2560.hex:i -U lock:w:0x0f:m
    ```
 
-5. **Using Arduino UNO/Mega as ISP Programmer (on macOS):**
-   - Follow the [Arduino ISP guide](https://docs.arduino.cc/built-in-examples/arduino-isp/ArduinoISP/) to set up your Arduino UNO or Mega as an ISP programmer.
+5. **Using Arduino UNO/Mega as ISP Programmer:**
+   - Follow the [Arduino ISP guide](https://docs.arduino.cc/built-in-examples/arduino-isp/ArduinoISP/) to set up your Arduino UNO or Mega as an ISP programmer, Use this sketch if required to around the old pins issue on a UNO 4 Wifi.
 
 6. **Load 8U2 with Bootloader and Set Lock Bits (using Arduino UNO/Mega on macOS):**
    ```bash
