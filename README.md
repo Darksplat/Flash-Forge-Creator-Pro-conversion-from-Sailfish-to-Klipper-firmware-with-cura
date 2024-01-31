@@ -139,28 +139,31 @@ WINDOWS
 
 ### Flash ATmega2560 (Main Microcontroller) Bootloader (For Windows)
 
-9. **Load ATMEGA2560 with Bootloader and Set Lock Bits (using USBasp on Windows):**
-   ```bash
-   avrdude -v -C avrdude.conf -p m2560 -c usbasp -P usb -U flash:w:stk500boot_v2_mega2560.hex:i -U lock:w:0x0f:m
-   ```
+Flash ATmega8U2 (USB to UART) Firmware (Windows)
 
-10. **Using Arduino UNO/Mega as ISP Programmer (on Windows):**
-   - Follow the [Arduino ISP guide](https://docs.arduino.cc/built-in-examples/arduino-isp/ArduinoISP/) to set up your Arduino UNO or Mega as an ISP programmer.
+Load 8U2 with Bootloader and Set Lock Bits (Windows USBasp):
 
-11. **Load 8U2 with Bootloader and Set Lock Bits (using Arduino UNO/Mega on Windows):**
-   ```bash
-   avrdude -v -C avrdude.conf -p m8u2 -c avrisp -P COMX -b 19200 -U flash:w:Makerbot-usbserial.hex:i -U lfuse:w:0xFF:m -U hfuse:w:0xD9:m -U efuse:w:0xF4:m -U lock:w:0x0F:m
-   ```
-   - Replace `COMX` with the appropriate COM port for your Arduino.
+avrdude -v -C avrdude.conf -p m8u2 -P usb -c usbasp -U flash:w:Makerbot-usbserial.hex:i -U lfuse:w:0xFF:m -U hfuse:w:0xD9:m -U efuse:w:0xF4:m -U lock:w:0x0F:m
 
-12. **Switch to "1280 ICSP" (using Arduino UNO/Mega on Windows):**
-   - Take the USBasp cable off and connect it to "1280 ICSP" (attention with the cable position).
+Switch to "1280 ICSP" (Windows USBasp):
 
-13. **Load ATMEGA2560 with Bootloader and Set Lock Bits (using Arduino UNO/Mega on Windows):**
-   ```bash
-   avrdude -v -C avrdude.conf -p m2560 -c avrisp -P COMX -b 19200 -U flash:w:stk500boot_v2_mega2560.hex:i -U lock:w:0x0f:m
-   ```
-   - Replace `COMX` with the appropriate COM port for your Arduino.
+Take the USBasp cable off and connect it to "1280 ICSP" (attention with the cable position).
+Load ATMEGA2560 with Bootloader and Set Lock Bits (Windows USBasp):
+
+avrdude -v -p m2560 -c usbasp -P usb -U lock:w:0x3F:m -U efuse:w:0xFD:m -U hfuse:w:0xD8:m -U lfuse:w:0xFF:m -e
+avrdude -v -p m2560 -P usb -c usbasp -U flash:w:stk500boot_v2_mega2560.hex:i -U lock:w:0x0f:m
+
+Load 8U2 with Bootloader and Set Lock Bits (Windows UNO/Mega):
+
+avrdude -v -p m8u2 -c avrisp -P COMX -b 19200 -U flash:w:Makerbot-usbserial.hex:i -U lfuse:w:0xFF:m -U hfuse:w:0xD9:m -U efuse:w:0xF4:m -U lock:w:0x0F:m
+Replace COMX with the appropriate COM port for your Arduino.
+
+Switch to "1280 ICSP" (Windows UNO/Mega):
+Take the USBasp cable off and connect it to "1280 ICSP" (attention with the cable position).
+Load ATMEGA2560 with Bootloader and Set Lock Bits (Windows UNO/Mega):
+
+avrdude -v -p m2560 -c avrisp -P COMX -b 19200 -U flash:w:stk500boot_v2_mega2560.hex:i -U lock:w:0x0f:m
+Replace COMX with the appropriate COM port for your Arduino.
 
 ### About the dcnewman Distribution
 
