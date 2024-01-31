@@ -271,12 +271,7 @@ This code uses `avrdude` to flash the micro-controller. Make sure to replace the
 
 ### Configuring Klipper
 
-1. Copy the printer configuration file to the Raspberry Pi:
-
-   - Use a desktop editor supporting "scp" or "sftp" protocols or copy directly via ssh.
-   - Save the file as `printer.cfg` in the home directory of the pi user (`/home/pi/printer.cfg`).
-
-2. Update the configuration file with the unique micro-controller name:
+1. Update the configuration file with the unique micro-controller name:
 
     ```bash
     ls /dev/serial/by-id/*
@@ -284,17 +279,9 @@ This code uses `avrdude` to flash the micro-controller. Make sure to replace the
 
    Note the updated unique serial port name.
 
-3. Update the config file:
+3. Restart OctoPrint and check the terminal for any configuration errors.
 
-    ```bash
-    nano ~/printer.cfg
-    ```
-
-   Update the [mcu] section to use the new serial port name.
-
-4. Restart OctoPrint and check the terminal for any configuration errors.
-
-5. Once Klipper reports the printer is ready, proceed to the config check document for basic checks on the config file definitions.
+4. Once Klipper reports the printer is ready, proceed to the config check document for basic checks on the config file definitions.
 
 Refer to the main documentation for additional information: [Klipper Installation Guide](https://www.klipper3d.org/Installation.html).
 
@@ -328,6 +315,20 @@ It should look like this I have also included it in the klipper folder in the st
 #  avrdude -c stk500v2 -p m2560 -P /dev/serial/by-id/usb-MakerBot_Industries_The_Replicator_85633323630351B050C0-if00 -b 57600 -D -U out/klipper.elf.hex
 
 # See docs/Config_Reference.md for a description of parameters.
+
+5. Update the config file:
+
+    ```bash
+    sudo service klipper stop
+    nano ~/creatorpro.cfg
+    sudo service klipper start
+    ```
+
+   Update the [mcu] section to use the new serial port name.
+   
+Now in the creatorpro.cfg file you need to insert the mcu serial id once again just copy your serial id to the file in place of mine save and close and restart
+
+
 
 
 
