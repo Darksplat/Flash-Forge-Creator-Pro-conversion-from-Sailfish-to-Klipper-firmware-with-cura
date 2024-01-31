@@ -58,10 +58,13 @@ Compiled, flashed and sliced by Windows 10 and MacOS 13 (Ventura)
 
 ### Hardware Required
 
-1. **USB Cable:**
+1. **Raspberry PI:**
+   - Ensure you have a RPI4 or at the very least a RPI ZeroW 2 for octoprint/web interface/Webcam. (Not nesscary for actually converting firmware but nice to have for klipper)
+
+2. **USB Cable:**
    - Ensure you have a USB cable to connect your printer to the computer for firmware flashing.
 
-2. **Tools:**
+3. **Tools:**
    - **USBasp USBISP 3.3V/5V AVR Programmer:** You can use a USBasp programmer like [this one](https://core-electronics.com.au/usbasp-usbisp-3-3v-5v-avr-programmer.html).
    - **Arduino UNO or Mega:** If available, and you dont have a USBasp follow [this guide](https://docs.arduino.cc/built-in-examples/arduino-isp/ArduinoISP/) for ISP Programming an Arduino UNO. Use the sketch Arduino_ISP_Mod_UNO_4_Wifi.
    - **Set of Hex/Allen Keys:** Required to access the main board.
