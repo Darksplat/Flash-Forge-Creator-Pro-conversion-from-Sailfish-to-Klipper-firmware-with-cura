@@ -11,7 +11,7 @@ By using this guide you are fully aware of the risks involved by such modificati
 
 1. Download the .hex files in [Bootloader/](./Bootloader) (I recommend to clone this repository).
 
-2. Download the [AVRDUDE](https://www.nongnu.org/avrdude/) and unzip it in a folder of your preference
+2. Download the [AVRDUDE](https://github.com/avrdudes/avrdude) and unzip it in a folder of your preference
 
 3. Copy the .hex files to the your AVRDUDE folder
     * Bootloader/8U2_firmware/Makerbot-usbserial.hex
@@ -19,13 +19,13 @@ By using this guide you are fully aware of the risks involved by such modificati
 
 4. Access the motherboard, lay the printer down or put it upside down and loose the screws below it and take the metal cover off. Locate the "8U2 ICSP" and "1280 ICSP" 6-pin header connector.
 
-![ICSP Connectors](./../img/ffcp_motherboard_icsp.jpg)
+![ICSP Connectors](https://github.com/Darksplat/Flash-Forge-Creator-Pro-conversion-from-Sailfish-to-Klipper-firmware-with-cura/blob/main/ICSP%20Images/ffcp_motherboard_icsp.jpg)
 
 5. Connect the USBasp cable at "8U2 ICSP" cheking the correct position. The picture below shows the reference pin.
 
-![ICSP Connectors](./../img/ubsasp_icsp_position1.jpg)
+![ICSP Connectors](https://github.com/Darksplat/Flash-Forge-Creator-Pro-conversion-from-Sailfish-to-Klipper-firmware-with-cura/blob/main/ICSP%20Images/ubsasp_icsp_position1.jpg)
 
-![ICSP Connectors](./../img/ubsasp_icsp_position2.jpg)
+![ICSP Connectors](https://github.com/Darksplat/Flash-Forge-Creator-Pro-conversion-from-Sailfish-to-Klipper-firmware-with-cura/blob/main/ICSP%20Images/ubsasp_icsp_position2.jpg)
 
 > Ensure the Board is Powered by USBasp or power cable
 
