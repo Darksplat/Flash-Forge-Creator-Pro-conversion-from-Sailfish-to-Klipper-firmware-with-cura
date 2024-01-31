@@ -307,14 +307,14 @@ It should look like this I have also included it in the klipper folder in the st
 [include klipper-flashforge-creatorpro/creatorpro.cfg]
 [include klipper-flashforge-creatorpro/creatorpro-macros.cfg]
 
-# This file contains common pin mappings for the FlashForge-Creator-Pro
-# To use this config, the firmware should be compiled for
-# the Atmel atmega2560.
+'# This file contains common pin mappings for the FlashForge-Creator-Pro
+'# To use this config, the firmware should be compiled for
+'# the Atmel atmega2560.
 
-# Use the following command to flash the board:
-#  avrdude -c stk500v2 -p m2560 -P /dev/serial/by-id/usb-MakerBot_Industries_The_Replicator_85633323630351B050C0-if00 -b 57600 -D -U out/klipper.elf.hex
+'# Use the following command to flash the board:
+'#  avrdude -c stk500v2 -p m2560 -P /dev/serial/by-id/usb-MakerBot_Industries_The_Replicator_85633323630351B050C0-if00 -b 57600 -D -U out/klipper.elf.hex
 
-# See docs/Config_Reference.md for a description of parameters.
+'# See docs/Config_Reference.md for a description of parameters.
 
 5. Update the config file:
 
