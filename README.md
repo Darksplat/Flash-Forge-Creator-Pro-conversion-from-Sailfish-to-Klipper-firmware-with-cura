@@ -18,7 +18,10 @@ Special thanks to the following GitHub contributors and their repositories:
 - [Eugr](https://github.com/eugr)
   - Repository: [Flashforge-for-Cura](https://github.com/eugr/Flashforge-for-Cura)
 
-Your contributions have been invaluable in the development and enhancement of tools related to FlashForge Creator Pro firmware.
+- [BillyNate](https://github.com/BillyNate)
+  - Repository: [klipper-flashforge-creatorpro](https://github.com/BillyNate/klipper-flashforge-creatorpro)
+
+Your contributions have been invaluable in the development and enhancement of tools related to FlashForge Creator Pro firmware and this guide.
 
 ⚠️ USE AT YOUR OWN RISK ⚠️
 
@@ -183,10 +186,6 @@ The new firmware ignores virtual DTR line changes. It pulls the RESET line down 
 57600 is the baud rate we use for firmware updates. The RESET line is set high for all other baud rates. Normal communication with the bot uses 115200 baud.
 
 
-Klipper installation
-
-
-Certainly! Below is the modified text with added headings for each section:
 
 ## Klipper Installation
 
@@ -216,10 +215,15 @@ Most Klipper settings are determined by a "printer configuration file" stored on
 
 1. Compile the micro-controller code:
 
+Verify that is indeed an atmega2560
+
     ```bash
     cd ~/klipper/
+    make distclean
     make menuconfig
     ```
+
+Select the atmega2560, leave the rest as default
 
    Configure settings as per comments in the printer configuration file. Press "Q" to exit and then "Y" to save. Run:
 
@@ -235,7 +239,7 @@ Most Klipper settings are determined by a "printer configuration file" stored on
 
    Note the unique serial port name for flashing.
 
-   This is my unique code but it should look like this
+   This is my unique code but it should look like this just replace yours were mine is
    'usb-MakerBot_Industries_The_Replicator_85633323630351B050C0-if00'
 
 4. Flash the micro-controller using avrdude:
@@ -249,9 +253,6 @@ Most Klipper settings are determined by a "printer configuration file" stored on
    Update `/dev/serial/by-id/usb-MakerBot_Industries_The_Replicator_85633323630351B050C0-if00` with the actual unique serial port name.
 
 This code uses `avrdude` to flash the micro-controller. Make sure to replace the placeholder with the actual serial port name obtained in step 2. After flashing, restart Klipper to apply the changes.
-
-
-
 
 ### Configuring OctoPrint to Use Klipper
 
@@ -297,8 +298,36 @@ This code uses `avrdude` to flash the micro-controller. Make sure to replace the
 
 Refer to the main documentation for additional information: [Klipper Installation Guide](https://www.klipper3d.org/Installation.html).
 
+We now need to download the config file from klipper (https://github.com/Klipper3d/klipper/tree/master/config) These files do change all the time I will include mine for ease of use
 
+Create the following directory in the config folder of klipper folder
 
+klipper-flashforge-creatorpro
+
+and copy these 2 files to it
+
+creatorpro.cfg
+creatorpro-macros.cfg
+
+In the printer.cfg file add these lines to it and delete the rest
+
+[include klipper-flashforge-creatorpro/creatorpro.cfg]
+[include klipper-flashforge-creatorpro/creatorpro-macros.cfg]
+
+It should look like this I have also included it in the klipper folder in the structure it needs to be in. You will notice that I have put my serial id in the file just as a reminder of what it is I sugguest you do the same the line is commented out any so it is just there for information.
+
+[include mainsail.cfg]
+[include klipper-flashforge-creatorpro/creatorpro.cfg]
+[include klipper-flashforge-creatorpro/creatorpro-macros.cfg]
+
+# This file contains common pin mappings for the FlashForge-Creator-Pro
+# To use this config, the firmware should be compiled for
+# the Atmel atmega2560.
+
+# Use the following command to flash the board:
+#  avrdude -c stk500v2 -p m2560 -P /dev/serial/by-id/usb-MakerBot_Industries_The_Replicator_85633323630351B050C0-if00 -b 57600 -D -U out/klipper.elf.hex
+
+# See docs/Config_Reference.md for a description of parameters.
 
 
 
