@@ -98,6 +98,7 @@ Certainly! I'll integrate the provided commands into the existing procedure:
    - Copy the .hex files to your AVRDUDE folder:
      - Bootloader/8U2_firmware/Makerbot-usbserial.hex
      - Bootloader/MightyBoardFirmware-2560-bootloader/stk500boot_v2_mega2560.hex
+     - Open Terminal and type 'cd' followed by a space then drag and drop the folder where avrdude and the hex files are (ie Downloads) in finder and press enter
     
 MACOS
 
