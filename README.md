@@ -181,3 +181,74 @@ Mirroring the DTR to the 1280 reset means that the Bot will reset when it is con
 The new firmware ignores virtual DTR line changes. It pulls the RESET line down when it receives a new connection with a baud rate of 56700.
 
 57600 is the baud rate we use for firmware updates. The RESET line is set high for all other baud rates. Normal communication with the bot uses 115200 baud.
+
+
+
+
+
+
+
+
+
+## Cura Installation for FlashForge Creator Pro
+
+### Installation
+
+#### Before You Begin
+
+Please download the ZIP file and unzip it somewhere on your hard drive. Alternatively, you can use `git clone` to checkout the repository.
+
+There are two ways to install the application: into the user folder (preferred) and the application package itself. Installing into the user folder will allow it to survive application updates, but if you have multiple user accounts on your Mac or PC, each user will need to install the profile separately, as it will not be visible to all users. In this case, you can use an alternative method to install the profile globally; however, it will not survive application updates as the application folder will be rewritten during the update.
+
+**macOS**
+
+1. **Into user library (preferred for single-user installations)**
+
+   - This is a preferred way as it should survive application updates. The easiest way is to use the supplied script.
+   - Open Terminal and navigate to the unzipped directory. Type `cd` and drag the unzipped folder into that Terminal window, then press Enter.
+   - Launch the install script by executing `bash ./install.sh`.
+   - Monitor output for any errors. If no errors are displayed, you are almost done - please refer to the post-install section below.
+
+   **Alternatively, you can do it manually:**
+
+   - Open Cura library folder located at `/Users/your_username/Library/Application\ Support/cura/5.5/` (for 5.5.x, for later versions it will be different).
+   - Copy files from definitions, extruders, and meshes folders from the downloaded ZIP file (or cloned repository) into the respective folders in Cura. You may need to create the meshes folder first.
+   - Perform steps from the post-install section below.
+
+2. **Into Application (if you have multiple user accounts on your Mac that will need to use this printer)**
+
+   - Open your Applications folder in Finder and right-click on Ultimaker Cura. Click on Show Package Contents.
+   - Go to Contents/Resources/resources and copy files from definitions, extruders, and meshes folders from the downloaded ZIP file (or cloned repository) into the respective folders in Cura.
+   - Perform steps from the post-install section below.
+
+**Linux**
+
+Change to the unzipped folder and run `bash ./install.sh`
+
+**Windows**
+
+1. **Into local AppData (preferred for single-user installations)**
+
+   - This is a preferred way as it should survive application updates.
+   - Open Cura library folder located at `C:\Users\your_username\AppData\Roaming\cura/5.5/` (for 5.5.x, for later versions it will be different).
+   - Copy files from definitions, extruders, and meshes folders from the downloaded ZIP file (or cloned repository) into the respective folders in Cura. You may need to create the meshes folder first.
+   - Perform steps from the post-install section below.
+
+2. **Into the application folder (if you have multiple user accounts on your PC that will need to use this printer)**
+
+   - Open Cura application resources folder located at `C:\Program Files\Ultimaker Cura 5.5\resources` (for 5.5.x, for later versions it will be different).
+   - Copy files from definitions, extruders, and meshes folders from the downloaded ZIP file (or cloned repository) into the respective folders in Cura.
+   - Perform steps from the post-install section below.
+
+**Post-install**
+
+1. Launch Cura and click on Add Printer in the printer selection dropdown. You should be able to see FlashForge Creator Pro in the list.
+2. BEFORE SLICING, DISABLE UNUSED EXTRUDER if using just one nozzle!
+3. Insert the following macros from klipper into the START G-Code section:
+   START_PRINT
+   PRIME_LINE
+4. Insert the following macros into the END G-Code section:
+   END_PRINT
+5. Do a test print
+
+   - Remember that extruder 1 is right, and extruder 2 is left. The easiest way to disable/enable a specific extruder is to go to the Settings menu and do it from there as they are named properly in it.
