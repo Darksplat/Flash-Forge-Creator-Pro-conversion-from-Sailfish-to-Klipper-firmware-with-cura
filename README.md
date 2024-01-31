@@ -142,9 +142,9 @@ WINDOWS
 Flash ATmega8U2 (USB to UART) Firmware (Windows)
 
 Load 8U2 with Bootloader and Set Lock Bits (Windows USBasp):
-
+```bash
 avrdude -v -C avrdude.conf -p m8u2 -P usb -c usbasp -U flash:w:Makerbot-usbserial.hex:i -U lfuse:w:0xFF:m -U hfuse:w:0xD9:m -U efuse:w:0xF4:m -U lock:w:0x0F:m
-
+```
 Switch to "1280 ICSP" (Windows USBasp):
 
 Take the USBasp cable off and connect it to "1280 ICSP" (attention with the cable position).
