@@ -258,8 +258,6 @@ Select the atmega2560, leave the rest as default
 
    Update `/dev/serial/by-id/usb-MakerBot_Industries_The_Replicator_85633323630351B050C0-if00` with the actual unique serial port name.
 
-This code uses `avrdude` to flash the micro-controller. Make sure to replace the placeholder with the actual serial port name obtained in step 2. After flashing, restart Klipper to apply the changes.
-
 ### Configuring OctoPrint to Use Klipper
 
 1. Configure OctoPrint:
