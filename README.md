@@ -396,10 +396,15 @@ Change to the unzipped folder and run `bash ./install.sh`
 1. Launch Cura and click on Add Printer in the printer selection dropdown. You should be able to see FlashForge Creator Pro in the list.
 2. BEFORE SLICING, DISABLE UNUSED EXTRUDER if using just one nozzle!
 3. Insert the following macros from klipper into the START G-Code section:
+   
    START_PRINT
+   
    PRIME_LINE
-4. Insert the following macros into the END G-Code section:
+   
+5. Insert the following macros into the END G-Code section:
+   
    END_PRINT
-5. Do a test print
+   
+7. Do a test print
 
    - Remember that extruder 1 is right, and extruder 2 is left. The easiest way to disable/enable a specific extruder is to go to the Settings menu and do it from there as they are named properly in it.
