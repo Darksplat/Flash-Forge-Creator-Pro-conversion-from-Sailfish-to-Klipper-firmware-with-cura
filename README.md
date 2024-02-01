@@ -308,8 +308,11 @@ In the printer.cfg file add these lines to it and delete the rest
 It should look like this I have also included it in the klipper folder in the structure it needs to be in. You will notice that I have put my serial id in the file just as a reminder of what it is I sugguest you do the same the line is commented out any so it is just there for information.
 
 [include mainsail.cfg]
+
 [include klipper-flashforge-creatorpro/creatorpro.cfg]
+
 [include klipper-flashforge-creatorpro/creatorpro-macros.cfg]
+
 
 '# This file contains common pin mappings for the FlashForge-Creator-Pro
 '# To use this config, the firmware should be compiled for
