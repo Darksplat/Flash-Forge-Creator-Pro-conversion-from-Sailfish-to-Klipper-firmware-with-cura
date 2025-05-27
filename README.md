@@ -210,10 +210,10 @@ Most Klipper settings are determined by a "printer configuration file" stored on
 2. Verify OctoPrint web server functionality.
 3. SSH into the target machine and run the following commands:
 
-    ```bash
+    
     git clone https://github.com/Klipper3d/klipper
     ./klipper/scripts/install-octopi.sh
-    ```
+    
 
    This downloads Klipper, installs dependencies, sets up Klipper to run at startup, and starts the Klipper host software.
 
